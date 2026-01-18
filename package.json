@@ -1,12 +1,20 @@
 {
-  "name": "senna-demo",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+    "name": "senna-demo",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "backend:dev": "bun run --cwd apps/backend dev",
+        "frontend:dev": "bun run --cwd apps/frontend dev"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    }
 }

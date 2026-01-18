@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/index.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@senna-demo/frontend/src/components",
+    "utils": "@senna-demo/frontend/src/lib/utils",
+    "ui": "@senna-demo/frontend/src/components/ui",
+    "lib": "@senna-demo/frontend/src/lib",
+    "hooks": "@senna-demo/frontend/src/hooks"
+  },
+  "iconLibrary": "lucide"
+}
