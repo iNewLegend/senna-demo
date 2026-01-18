@@ -41,6 +41,17 @@ Videos are limited to 20 seconds maximum. This is enforced at two levels:
 
 This dual validation ensures the limit is respected regardless of how the API is called.
 
+### Conversation Context
+
+The chat maintains full conversation history for contextual follow-up questions:
+
+- Backend stores chat history per session (in-memory)
+- Each request to OpenAI includes previous messages
+- Users can ask follow-up questions like "What color was that?" or "Tell me more about the person"
+- Context is preserved until the session ends (page refresh)
+
+This enables natural multi-turn conversations about the video content.
+
 ### Architecture
 
 ```

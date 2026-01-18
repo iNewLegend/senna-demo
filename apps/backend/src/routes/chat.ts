@@ -14,7 +14,10 @@ async function chatRoutes(fastify: FastifyInstance) {
       return reply.status(404).send({ error: "Session not found" } as never)
     }
 
-    const response = await analyzeVideo(session.frames, message)
+    const response = await analyzeVideo(session.frames, message, session.history)
+
+    session.history.push({ role: "user", content: message })
+    session.history.push({ role: "assistant", content: response })
 
     return { message: response }
   })

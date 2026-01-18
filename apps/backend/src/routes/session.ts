@@ -22,6 +22,7 @@ async function sessionRoutes(fastify: FastifyInstance) {
     sessions.set(sessionId, {
       id: sessionId,
       frames,
+      history: [],
     })
 
     return { sessionId }
