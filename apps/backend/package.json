@@ -7,7 +7,10 @@
     "start": "bun src/index.ts"
   },
   "dependencies": {
-    "fastify": "^5.2.1"
+    "@fastify/cors": "^11.2.0",
+    "@fastify/multipart": "^9.3.0",
+    "fastify": "^5.2.1",
+    "openai": "^6.16.0"
   },
   "devDependencies": {
     "@types/bun": "latest"

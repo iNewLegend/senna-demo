@@ -5,23 +5,54 @@ import { VideoUpload } from "@senna-demo/frontend/src/components/video-upload"
 import { VideoPreview } from "@senna-demo/frontend/src/components/video-preview"
 import { ChatMessages, type Message } from "@senna-demo/frontend/src/components/chat-messages"
 import { ChatInput } from "@senna-demo/frontend/src/components/chat-input"
+import { uploadVideo, sendMessage } from "@senna-demo/frontend/src/services/api"
 
 export function App() {
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  const [sessionId, setSessionId] = useState<string | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleUpload = (file: File) => {
-    const url = URL.createObjectURL(file)
-    setVideoUrl(url)
+  const handleUpload = async (file: File) => {
+    setError(null)
+    setIsLoading(true)
+
+    try {
+      const response = await uploadVideo(file)
+      setSessionId(response.sessionId)
+      setVideoUrl(URL.createObjectURL(file))
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleSend = (content: string) => {
+  const handleSend = async (content: string) => {
+    if (!sessionId) return
+
     const userMessage: Message = {
       id: crypto.randomUUID(),
       role: "user",
       content,
     }
     setMessages((prev) => [...prev, userMessage])
+    setIsLoading(true)
+
+    try {
+      const response = await sendMessage(sessionId, content)
+      const assistantMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: response.message,
+      }
+      setMessages((prev) => [...prev, assistantMessage])
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to get response")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -32,10 +63,16 @@ export function App() {
             <CardTitle>Video</CardTitle>
           </CardHeader>
           <CardContent>
+            {error && (
+              <p className="text-destructive text-sm mb-4">{error}</p>
+            )}
             {videoUrl ? (
               <VideoPreview src={videoUrl} />
             ) : (
-              <VideoUpload onUpload={handleUpload} />
+              <VideoUpload onUpload={handleUpload} disabled={isLoading} />
+            )}
+            {isLoading && !videoUrl && (
+              <p className="text-muted-foreground text-sm mt-2">Uploading...</p>
             )}
           </CardContent>
         </Card>
@@ -45,7 +82,7 @@ export function App() {
             <CardTitle>Chat</CardTitle>
           </CardHeader>
           <ChatMessages messages={messages} />
-          <ChatInput onSend={handleSend} disabled={!videoUrl} />
+          <ChatInput onSend={handleSend} disabled={!sessionId || isLoading} />
         </Card>
       </div>
     </div>

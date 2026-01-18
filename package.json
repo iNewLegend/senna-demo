@@ -4,8 +4,8 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "backend:dev": "bun run --cwd apps/backend dev",
-        "frontend:dev": "bun run --cwd apps/frontend dev"
+        "backend:dev": "bun --hot apps/backend/src/index.ts",
+        "frontend:dev": "bun --hot apps/frontend/src/server.ts"
     },
     "workspaces": [
         "apps/*",
