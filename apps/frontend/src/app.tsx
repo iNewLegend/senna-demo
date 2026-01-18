@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@senna-demo/frontend/src/components/ui/card"
-import { VideoUpload } from "@senna-demo/frontend/src/components/video-upload"
-import { VideoPreview } from "@senna-demo/frontend/src/components/video-preview"
-import { ChatMessages, type Message } from "@senna-demo/frontend/src/components/chat-messages"
-import { ChatInput } from "@senna-demo/frontend/src/components/chat-input"
-import { createSession, sendMessage } from "@senna-demo/frontend/src/services/api"
-import { processVideo } from "@senna-demo/frontend/src/services/video"
+import { Card, CardContent, CardHeader, CardTitle } from "@video-processing-ai/frontend/src/components/ui/card"
+import { VideoUpload } from "@video-processing-ai/frontend/src/components/video-upload"
+import { VideoPreview } from "@video-processing-ai/frontend/src/components/video-preview"
+import { ChatMessages, type Message } from "@video-processing-ai/frontend/src/components/chat-messages"
+import { ChatInput } from "@video-processing-ai/frontend/src/components/chat-input"
+import { createSession, sendMessage } from "@video-processing-ai/frontend/src/services/api"
+import { processVideo } from "@video-processing-ai/frontend/src/services/video"
 
 export function App() {
   const [videoUrl, setVideoUrl] = useState<string | null>(null)

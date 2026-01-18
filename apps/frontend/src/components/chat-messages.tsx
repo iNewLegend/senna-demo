@@ -1,4 +1,4 @@
-import { ScrollArea } from "@senna-demo/frontend/src/components/ui/scroll-area"
+import { ScrollArea } from "@video-processing-ai/frontend/src/components/ui/scroll-area"
 
 interface Message {
   id: string

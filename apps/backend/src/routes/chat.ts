@@ -1,8 +1,8 @@
 import type { FastifyInstance } from "fastify"
 
-import { analyzeVideo } from "@senna-demo/backend/src/services/openai"
-import { getSession } from "@senna-demo/backend/src/routes/session"
-import type { ChatRequest, ChatResponse } from "@senna-demo/backend/src/types"
+import { analyzeVideo } from "@video-processing-ai/backend/src/services/openai"
+import { getSession } from "@video-processing-ai/backend/src/routes/session"
+import type { ChatRequest, ChatResponse } from "@video-processing-ai/backend/src/types"
 
 async function chatRoutes(fastify: FastifyInstance) {
   fastify.post<{ Body: ChatRequest; Reply: ChatResponse }>("/api/chat", async (request, reply) => {

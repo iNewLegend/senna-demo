@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 
-import { cn } from "@senna-demo/frontend/src/lib/utils"
+import { cn } from "@video-processing-ai/frontend/src/lib/utils"
 
 function ScrollArea({
   className,

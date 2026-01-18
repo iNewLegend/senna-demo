@@ -1,8 +1,8 @@
 import Fastify from "fastify"
 import cors from "@fastify/cors"
 
-import { sessionRoutes } from "@senna-demo/backend/src/routes/session"
-import { chatRoutes } from "@senna-demo/backend/src/routes/chat"
+import { sessionRoutes } from "@video-processing-ai/backend/src/routes/session"
+import { chatRoutes } from "@video-processing-ai/backend/src/routes/chat"
 
 const BACKEND_HOST = process.env.BACKEND_HOST ?? "localhost"
 const BACKEND_PORT = Number(process.env.BACKEND_PORT ?? 3000)

@@ -1,6 +1,6 @@
 import OpenAI from "openai"
 
-import type { ChatMessage } from "@senna-demo/backend/src/types"
+import type { ChatMessage } from "@video-processing-ai/backend/src/types"
 
 const client = new OpenAI()
 

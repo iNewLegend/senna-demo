@@ -1,4 +1,4 @@
-# Senna Demo
+# video-processing-ai
 
 https://github.com/user-attachments/assets/be69fa55-5656-43d1-94d0-53d4e9c066f3
 
@@ -80,8 +80,8 @@ Frontend (React + Tailwind)     Backend (Fastify)
 
 1. Clone and install:
    ```bash
-   git clone https://github.com/inewlegend/senna-demo
-   cd senna-demo
+   git clone https://github.com/inewlegend/video-processing-ai
+   cd video-processing-ai
    bun install
    ```
 
@@ -107,7 +107,7 @@ Frontend (React + Tailwind)     Backend (Fastify)
 ## Project Structure
 
 ```
-senna-demo/
+video-processing-ai/
 ├── apps/
 │   ├── frontend/          # React + Tailwind + shadcn
 │   │   ├── src/

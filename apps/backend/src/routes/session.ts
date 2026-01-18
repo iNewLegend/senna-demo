@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify"
 import { randomUUID } from "crypto"
 
-import type { Session, SessionRequest, SessionResponse } from "@senna-demo/backend/src/types"
+import type { Session, SessionRequest, SessionResponse } from "@video-processing-ai/backend/src/types"
 
 const sessions = new Map<string, Session>()
 

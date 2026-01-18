@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { Upload } from "lucide-react"
 
-import { Button } from "@senna-demo/frontend/src/components/ui/button"
+import { Button } from "@video-processing-ai/frontend/src/components/ui/button"
 
 interface VideoUploadProps {
   onUpload: (file: File) => void

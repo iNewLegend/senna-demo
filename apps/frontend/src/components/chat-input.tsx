@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Send } from "lucide-react"
 
-import { Button } from "@senna-demo/frontend/src/components/ui/button"
-import { Input } from "@senna-demo/frontend/src/components/ui/input"
+import { Button } from "@video-processing-ai/frontend/src/components/ui/button"
+import { Input } from "@video-processing-ai/frontend/src/components/ui/input"
 
 interface ChatInputProps {
   onSend: (message: string) => void

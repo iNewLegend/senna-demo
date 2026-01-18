@@ -1,5 +1,5 @@
 {
-    "name": "senna-demo",
+    "name": "video-processing-ai",
     "module": "index.ts",
     "type": "module",
     "private": true,
@@ -12,8 +12,8 @@
         "packages/*"
     ],
     "dependencies": {
-        "@senna-demo/frontend": "workspace:*",
-        "@senna-demo/backend": "workspace:*"
+        "@video-processing-ai/frontend": "workspace:*",
+        "@video-processing-ai/backend": "workspace:*"
     },
     "devDependencies": {
         "@types/bun": "latest"

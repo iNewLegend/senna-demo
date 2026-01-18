@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@senna-demo/frontend/src/lib/utils"
+import { cn } from "@video-processing-ai/frontend/src/lib/utils"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (

@@ -1,5 +1,5 @@
 {
-  "name": "@senna-demo/backend",
+  "name": "@video-processing-ai/backend",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
