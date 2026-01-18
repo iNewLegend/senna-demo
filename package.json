@@ -11,6 +11,10 @@
         "apps/*",
         "packages/*"
     ],
+    "dependencies": {
+        "@senna-demo/frontend": "workspace:*",
+        "@senna-demo/backend": "workspace:*"
+    },
     "devDependencies": {
         "@types/bun": "latest"
     },

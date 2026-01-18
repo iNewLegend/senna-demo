@@ -10,11 +10,11 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@senna-demo/frontend/src/components",
-    "utils": "@senna-demo/frontend/src/lib/utils",
-    "ui": "@senna-demo/frontend/src/components/ui",
-    "lib": "@senna-demo/frontend/src/lib",
-    "hooks": "@senna-demo/frontend/src/hooks"
+    "components": "src/components",
+    "utils": "src/lib/utils",
+    "ui": "src/components/ui",
+    "lib": "src/lib",
+    "hooks": "src/hooks"
   },
   "iconLibrary": "lucide"
 }
