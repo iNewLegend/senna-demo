@@ -5,16 +5,18 @@ A simple video analysis chat demo where users can upload a short video and ask q
 ## Installation
 
 ```bash
-git clone <repo>
+git clone https://github.com/inewlegend/senna-demo
 cd senna-demo
 
 bun install
 
-cp .env-sample .env
 # Edit .env and add your OPENAI_API_KEY
+cp .env-sample .env
+
 
 # Run backend
 bun run backend:dev
+
 # Run Frontend
 bun run frontend:dev
 ```
