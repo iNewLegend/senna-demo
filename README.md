@@ -2,25 +2,6 @@
 
 A simple video analysis chat demo where users can upload a short video and ask questions about it using AI.
 
-## Installation
-
-```bash
-git clone https://github.com/inewlegend/senna-demo
-cd senna-demo
-
-bun install
-
-# Edit .env and add your OPENAI_API_KEY
-cp .env-sample .env
-
-
-# Run backend
-bun run backend:dev
-
-# Run Frontend
-bun run frontend:dev
-```
-
 ## Key Technical Decisions
 
 ### Browser-Based Video Processing (No FFmpeg)
@@ -97,7 +78,7 @@ Frontend (React + Tailwind)     Backend (Fastify)
 
 1. Clone and install:
    ```bash
-   git clone <repo>
+   git clone https://github.com/inewlegend/senna-demo
    cd senna-demo
    bun install
    ```
