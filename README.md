@@ -1,5 +1,7 @@
 # Senna Demo
 
+https://github.com/user-attachments/assets/be69fa55-5656-43d1-94d0-53d4e9c066f3
+
 A simple video analysis chat demo where users can upload a short video and ask questions about it using AI.
 
 ## Key Technical Decisions
