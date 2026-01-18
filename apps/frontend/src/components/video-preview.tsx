@@ -8,6 +8,9 @@ export function VideoPreview({ src }: VideoPreviewProps) {
       <video
         src={src}
         controls
+        autoPlay
+        muted
+        loop
         className="w-full max-h-64 object-contain bg-black"
       />
     </div>

@@ -6,13 +6,11 @@ interface VideoInfo {
 async function loadVideo(file: File): Promise<HTMLVideoElement> {
   return new Promise((resolve, reject) => {
     const video = document.createElement("video")
-    video.preload = "metadata"
+    video.preload = "auto"
+    video.muted = true
+    video.playsInline = true
 
-    video.onloadedmetadata = () => {
-      video.currentTime = 0
-    }
-
-    video.onseeked = () => {
+    video.onloadeddata = () => {
       resolve(video)
     }
 
@@ -21,14 +19,13 @@ async function loadVideo(file: File): Promise<HTMLVideoElement> {
     }
 
     video.src = URL.createObjectURL(file)
+    video.load()
   })
 }
 
 async function extractFrameAtTime(video: HTMLVideoElement, time: number): Promise<string> {
   return new Promise((resolve) => {
-    video.currentTime = time
-
-    video.onseeked = () => {
+    const captureFrame = () => {
       const canvas = document.createElement("canvas")
       canvas.width = video.videoWidth
       canvas.height = video.videoHeight
@@ -40,6 +37,13 @@ async function extractFrameAtTime(video: HTMLVideoElement, time: number): Promis
 
       const dataUrl = canvas.toDataURL("image/jpeg", 0.8)
       resolve(dataUrl)
+    }
+
+    if (Math.abs(video.currentTime - time) < 0.1) {
+      captureFrame()
+    } else {
+      video.onseeked = captureFrame
+      video.currentTime = time
     }
   })
 }

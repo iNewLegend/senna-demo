@@ -12,13 +12,14 @@ export function App() {
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [isChatLoading, setIsChatLoading] = useState(false)
   const [status, setStatus] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const handleUpload = async (file: File) => {
     setError(null)
-    setIsLoading(true)
+    setIsUploading(true)
 
     try {
       setStatus("Processing video...")
@@ -30,11 +31,18 @@ export function App() {
       setSessionId(response.sessionId)
       setVideoUrl(URL.createObjectURL(file))
       setStatus(null)
+
+      const welcomeMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: "The video is uploaded. You can now ask questions about it.",
+      }
+      setMessages([welcomeMessage])
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed")
       setStatus(null)
     } finally {
-      setIsLoading(false)
+      setIsUploading(false)
     }
   }
 
@@ -47,7 +55,7 @@ export function App() {
       content,
     }
     setMessages((prev) => [...prev, userMessage])
-    setIsLoading(true)
+    setIsChatLoading(true)
 
     try {
       const response = await sendMessage(sessionId, content)
@@ -60,13 +68,13 @@ export function App() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to get response")
     } finally {
-      setIsLoading(false)
+      setIsChatLoading(false)
     }
   }
 
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="max-w-4xl mx-auto grid gap-4 md:grid-cols-2">
+      <div className="max-w-2xl mx-auto flex flex-col gap-4">
         <Card>
           <CardHeader>
             <CardTitle>Video</CardTitle>
@@ -78,20 +86,20 @@ export function App() {
             {videoUrl ? (
               <VideoPreview src={videoUrl} />
             ) : (
-              <VideoUpload onUpload={handleUpload} disabled={isLoading} />
+              <VideoUpload onUpload={handleUpload} disabled={isUploading} />
             )}
-            {isLoading && !videoUrl && status && (
+            {isUploading && status && (
               <p className="text-muted-foreground text-sm mt-2">{status}</p>
             )}
           </CardContent>
         </Card>
 
-        <Card className="flex flex-col h-[500px]">
+        <Card className="flex flex-col min-h-[400px]">
           <CardHeader>
             <CardTitle>Chat</CardTitle>
           </CardHeader>
-          <ChatMessages messages={messages} />
-          <ChatInput onSend={handleSend} disabled={!sessionId || isLoading} />
+          <ChatMessages messages={messages} isLoading={isChatLoading} />
+          <ChatInput onSend={handleSend} disabled={!sessionId || isChatLoading} />
         </Card>
       </div>
     </div>

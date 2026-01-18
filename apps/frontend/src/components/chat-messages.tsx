@@ -8,9 +8,10 @@ interface Message {
 
 interface ChatMessagesProps {
   messages: Message[]
+  isLoading?: boolean
 }
 
-export function ChatMessages({ messages }: ChatMessagesProps) {
+export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
   return (
     <ScrollArea className="flex-1 p-4">
       <div className="flex flex-col gap-4">
@@ -30,6 +31,13 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
             </div>
           </div>
         ))}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="max-w-[80%] rounded-lg px-4 py-2 bg-muted text-muted-foreground italic">
+              Waiting for agent response...
+            </div>
+          </div>
+        )}
       </div>
     </ScrollArea>
   )
