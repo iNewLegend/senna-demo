@@ -1,0 +1,6 @@
+---
+description: Use zustand 
+globs: *.tsx,*ts
+alwaysApply: true
+---
+Use zustand for state
