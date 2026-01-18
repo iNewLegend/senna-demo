@@ -2,6 +2,23 @@
 
 A simple video analysis chat demo where users can upload a short video and ask questions about it using AI.
 
+## Installation
+
+```bash
+git clone <repo>
+cd senna-demo
+
+bun install
+
+cp .env-sample .env
+# Edit .env and add your OPENAI_API_KEY
+
+# Run backend
+bun run backend:dev
+# Run Frontend
+bun run frontend:dev
+```
+
 ## Key Technical Decisions
 
 ### Browser-Based Video Processing (No FFmpeg)
