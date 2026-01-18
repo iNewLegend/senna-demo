@@ -25,6 +25,22 @@ We chose to process videos in the browser using native Web APIs instead of relyi
 - Processing happens client-side (acceptable for short videos up to 20s)
 - Larger payload size (base64 frames vs video file)
 
+### Video Duration Limit (20 seconds)
+
+Videos are limited to 20 seconds maximum. This is enforced at two levels:
+
+**Frontend validation:**
+- `HTMLVideoElement.duration` is checked before processing
+- Videos over 20 seconds are rejected immediately
+
+**Backend validation:**
+- Frames are extracted at 1 frame per second, capped at 10 frames
+- Backend rejects requests with more than 10 frames
+- This provides a secondary check: 10 frames × 1fps = 10 seconds of coverage
+- Even if frontend is bypassed, backend limits the data processed
+
+This dual validation ensures the limit is respected regardless of how the API is called.
+
 ### Architecture
 
 ```

@@ -13,6 +13,10 @@ async function sessionRoutes(fastify: FastifyInstance) {
       return reply.status(400).send({ error: "No frames provided" } as never)
     }
 
+    if (frames.length > 10) {
+      return reply.status(400).send({ error: "Video exceeds 20 second limit (max 10 frames at 1fps)" } as never)
+    }
+
     const sessionId = randomUUID()
 
     sessions.set(sessionId, {
