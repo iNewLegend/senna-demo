@@ -1,7 +1,14 @@
-interface VideoSession {
+interface Session {
   id: string
-  videoPath: string
   frames: string[]
+}
+
+interface SessionRequest {
+  frames: string[]
+}
+
+interface SessionResponse {
+  sessionId: string
 }
 
 interface ChatRequest {
@@ -13,9 +20,4 @@ interface ChatResponse {
   message: string
 }
 
-interface UploadResponse {
-  sessionId: string
-  duration: number
-}
-
-export type { VideoSession, ChatRequest, ChatResponse, UploadResponse }
+export type { Session, SessionRequest, SessionResponse, ChatRequest, ChatResponse }

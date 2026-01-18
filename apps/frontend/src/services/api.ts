@@ -17,28 +17,28 @@ async function getApi(): Promise<string> {
   return cachedApiUrl
 }
 
-interface UploadResponse {
+interface SessionResponse {
   sessionId: string
-  duration: number
 }
 
 interface ChatResponse {
   message: string
 }
 
-async function uploadVideo(file: File): Promise<UploadResponse> {
+async function createSession(frames: string[]): Promise<SessionResponse> {
   const apiUrl = await getApi()
-  const formData = new FormData()
-  formData.append("file", file)
 
-  const response = await fetch(`${apiUrl}/api/upload`, {
+  const response = await fetch(`${apiUrl}/api/session`, {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ frames }),
   })
 
   if (!response.ok) {
     const error = await response.json()
-    throw new Error(error.error || "Upload failed")
+    throw new Error(error.error || "Failed to create session")
   }
 
   return response.json()
@@ -46,6 +46,7 @@ async function uploadVideo(file: File): Promise<UploadResponse> {
 
 async function sendMessage(sessionId: string, message: string): Promise<ChatResponse> {
   const apiUrl = await getApi()
+
   const response = await fetch(`${apiUrl}/api/chat`, {
     method: "POST",
     headers: {
@@ -62,5 +63,5 @@ async function sendMessage(sessionId: string, message: string): Promise<ChatResp
   return response.json()
 }
 
-export { uploadVideo, sendMessage }
-export type { UploadResponse, ChatResponse }
+export { createSession, sendMessage }
+export type { SessionResponse, ChatResponse }
